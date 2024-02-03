@@ -17,7 +17,7 @@ const postWebhook = async (req, res) => {
   } catch (error) {
     console.error("Error occurred while processing event", {
       error,
-      eventBody: req.event.body,
+      eventBody: req.body,
     });
     return res.status(500).json({ success: false, error: error.message });
   }
