@@ -1,3 +1,5 @@
+import sendNotificationToSlack from "../../../utils/sendNotificationToSlack.js";
+
 const postWebhook = async (req, res) => {
   try {
     if (!req.body || !req.body.entry) {
@@ -25,8 +27,7 @@ const postWebhook = async (req, res) => {
           const senderId = sender.id;
           const messageText = message.text;
 
-          // Send the message to Slack
-          // await axios.post(SLACK_SEND_MESSAGE, { message: messageText });
+          await sendNotificationToSlack(messageText);
 
           console.log(
             "Message sent to Slack from Facebook user:",
