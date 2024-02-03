@@ -10,36 +10,26 @@ To integrate with Facebook, you need to create a Facebook App. Follow these step
 
 - Go to the [Facebook Developers Portal](https://developers.facebook.com/).
 - Create a new app and configure it with the necessary details.
-- Note down the App ID, App Secret, and Page Access Token.
-- Set up a Webhook to receive updates from Facebook. Define a Callback URL where Facebook will send notifications. Also, generate a Verify Token for callback URL verification.
+- Set up Messenger in the "Add Products" section to receive message updates from Facebook.
+- Define a Callback URL where Facebook will send notifications. Ensure the Callback URL is publicly accessible, and use the node app URL with the `/meta/webhook` path.
+- Generate a Verify Token for callback URL verification.
+- Subscribe to `messages` from the subscription list.
 
 ### 2. Create Slack App
 
 For Slack integration, you'll need to create a Slack App:
 
 - Go to the [Slack API](https://api.slack.com/).
-- Create a new Slack App and configure it.
+- Create a new Slack App and configure it to your workspace.
+- In the "OAuth & Permissions" section, add the `chat:write` permission to the Bot Token Scope.
+- Install the app in your workspace and invite it to the respective Slack channel.
 - Note down the Slack Bot Token and specify the Slack channel where updates will be sent (e.g., `facebook-updates`).
 
 ### 3. Host the Node App
 
 To host the Node.js app, follow these steps:
 
-- Clone this GitHub repository to your local machine.
+- Clone this GitHub repository to your local machine or hosting patform(Ex: [Replit.com](https://replit.com/)).
 - Install dependencies using `npm install`.
-- Set up environment variables by creating a `.env` file with the necessary credentials (e.g., Facebook App ID, App Secret, Page Access Token, Slack Bot Token, Slack Channel).
+- Set up environment variables by creating a `.env` file with the necessary credentials (e.g., Facebook Verify Token, Facebook Access Token, Slack Bot Token, Slack Channel).
 - Run the app using `npm start`.
-
-## Permissions
-
-Ensure the following permissions and configurations are set:
-
-### Facebook App
-
-- **pages_messaging:** Required to receive messages.
-- **pages_read_user_content:** Required to get the sender's name from the user content.
-- **pages_show_list:** Required to get the list of pages for the user.
-
-### Slack App
-
-- **chat:write:** Required to send messages to the specified Slack channel.

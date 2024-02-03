@@ -17,19 +17,10 @@ const processWebhookEvents = async (events) => {
               return;
             }
 
-            const senderId = sender.id;
-            const messageText = message.text;
-
-            const senderName = await fetchSenderName(senderId);
+            const senderName = await fetchSenderName(sender.id);
 
             await sendNotificationToSlack(
-              `Received message: "${messageText}" from "${senderName}"`
-            );
-
-            console.log(
-              "Message sent to Slack from Facebook user:",
-              senderId,
-              messageText
+              `Received message: "${message.text}" from "${senderName}"`
             );
           } catch (error) {
             console.error("Error occurred while processing event", {
