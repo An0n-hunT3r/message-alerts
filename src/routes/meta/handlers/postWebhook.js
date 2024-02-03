@@ -1,4 +1,4 @@
-import sendNotificationToSlack from "../../../utils/sendNotificationToSlack.js";
+import processWebhookEvents from "../../../controllers/meta/processWebhookEvents.js";
 
 const postWebhook = async (req, res) => {
   try {
@@ -11,37 +11,7 @@ const postWebhook = async (req, res) => {
 
     const { entry } = req.body;
 
-    entry.forEach((eachEntry) => {
-      const { messaging: messagingEvents } = eachEntry;
-
-      messagingEvents.forEach(async ({ message, sender }) => {
-        try {
-          if (!(message && message.text)) {
-            console.log("No message text found, skipping event", {
-              error,
-              event: { message, sender },
-            });
-            return;
-          }
-
-          const senderId = sender.id;
-          const messageText = message.text;
-
-          await sendNotificationToSlack(messageText);
-
-          console.log(
-            "Message sent to Slack from Facebook user:",
-            senderId,
-            messageText
-          );
-        } catch (error) {
-          console.error("Error occurred while processing event", {
-            error,
-            event: { message, sender },
-          });
-        }
-      });
-    });
+    await processWebhookEvents(entry);
 
     return res.sendStatus(200);
   } catch (error) {
