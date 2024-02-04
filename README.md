@@ -34,13 +34,14 @@ To host the Node.js app, follow these steps:
 - Set up environment variables by creating a `.env` file with the necessary credentials (e.g., Facebook Verify Token, Facebook Access Token, Slack Bot Token, Slack Channel).
 - Run the app using `npm start`.
 
-### How It Works
+## How It Works
 
-1. **Facebook Message Event:**
+### 1. **Facebook Message Event:**
 
-   - When a new message is received on Facebook, Facebook sends a message event to the Node.js app's callback URL.
-   - The Node.js app processes the Facebook message event, extracting relevant information such as the sender's name and message text.
+- When a new message is received on Facebook, Facebook sends a message event to the Node.js app's callback URL.
+- The Node.js app processes the Facebook message event, extracting relevant information such as the sender's name and message text.
 
-2. **Slack Notification:**
-   - Using the extracted information, the Node.js app sends a formatted message to the designated Slack channel.
-   - The Slack App, configured with the appropriate permissions, receives the message and posts it to the specified channel (e.g., `facebook-updates`).
+### 2. **Slack Notification:**
+
+- Using the extracted information, the Node.js app sends a formatted message to the designated Slack channel.
+- The Slack App, configured with the appropriate permissions, receives the message and posts it to the specified channel (e.g., `facebook-updates`).
